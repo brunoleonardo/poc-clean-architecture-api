@@ -6,7 +6,9 @@ import javax.inject.Named
 
 @Named
 class SaveUserUseCase(private val saveUserGateway: SaveUserGateway) {
+    
     fun execute(user: User): Result<User> {
         return saveUserGateway.execute(user)
     }
+
 }

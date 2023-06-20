@@ -13,16 +13,22 @@ import org.springframework.web.util.UriComponentsBuilder
 import javax.validation.Valid
 
 @RestController
-@RequestMapping("/v1/users")
+@RequestMapping(UserController.URI)
 class UserController(private val saveUserUseCase: SaveUserUseCase) {
+
+    companion object {
+        const val URI = "/v1/users"
+    }
+
     @PostMapping
     fun save(
         @RequestBody @Valid saveUserDTO: SaveUserDTO,
         uriBuilder: UriComponentsBuilder
     ): ResponseEntity<UserCreatedDTO> {
         val userCreated = saveUserUseCase.execute(saveUserDTO.toDomain()).getOrThrow()
-        val uri = uriBuilder.path("/v1/users/${userCreated.id}").build().toUri()
+        val uri = uriBuilder.path("$URI/${userCreated.id}").build().toUri()
 
         return ResponseEntity.created(uri).body(UserCreatedDTO.fromDomain(userCreated))
     }
+    
 }

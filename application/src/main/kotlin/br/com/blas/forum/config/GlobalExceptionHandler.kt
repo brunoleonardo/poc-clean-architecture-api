@@ -1,5 +1,6 @@
 package br.com.blas.forum.config
 
+import br.com.blas.forum.exception.BusinessException
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.MethodArgumentNotValidException
@@ -38,6 +39,17 @@ class GlobalExceptionHandler {
             status = HttpStatus.BAD_REQUEST.value(),
             error = HttpStatus.BAD_REQUEST.name,
             message = errorMessage.toString(),
+            path = request.servletPath
+        )
+    }
+
+    @ExceptionHandler(BusinessException::class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    fun handleBusinessException(exception: BusinessException, request: HttpServletRequest): ErrorMessage {
+        return ErrorMessage(
+            status = HttpStatus.BAD_REQUEST.value(),
+            error = HttpStatus.BAD_REQUEST.name,
+            message = exception.message,
             path = request.servletPath
         )
     }
