@@ -1,6 +1,6 @@
 # Forum Api
 
-Forum Api para estudo do padrão arquitetural 'Clean Arquitecture' com 'Kotlin' :)"
+Forum Api para estudo do padrão arquitetural 'Clean Arquitecture' com 'Kotlin' :)
 
 ## Definições do Projeto
 
@@ -39,7 +39,7 @@ Para executar os passos abaixo é necessário que as seguintes portas esteja liv
 1) Baixe o projeto:
 
 ```shell
-git clone git@github.com:
+git clone https://github.com/brunoleonardo/poc-clean-architecture-api.git
 ```
 
 2) Baixe as dependências do Gradle usando sua IDE (sugerimos a [IntelliJ](https://www.jetbrains.com/pt-br/idea/))
