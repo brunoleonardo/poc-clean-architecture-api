@@ -1,0 +1,7 @@
+.gradle/
+build/
+/gradlew
+/gradle/wrapper/gradle-wrapper.jar
+/gradlew.bat
+/.idea/*
+/.idea/sonarlint/issuestore/index.pb

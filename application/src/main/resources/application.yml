@@ -1,0 +1,27 @@
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /
+  api-docs:
+    enabled: true
+    path: /api-docs
+
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL:jdbc:mysql://localhost:3306/forum}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:secret}
+  jpa:
+    show-sql: true
+    hibernate:
+      format_sql: true
+      ddl-auto: validate
+    open-in-view: true
+  flyway:
+    enabled: true
+    url: ${DB_URL:jdbc:mysql://localhost:3306/forum}
+    user: ${DB_USER:root}
+    password: ${DB_PASSWORD:secret}
+  profiles:
+    active: ${ACTIVE_PROFILE:dev}
