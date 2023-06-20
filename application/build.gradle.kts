@@ -23,6 +23,7 @@ extra["springCloudVersion"] = "2021.0.3"
 dependencies {
     implementation(project(":domain"))
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web") {
         exclude(null, "spring-boot-starter-tomcat")
     }
