@@ -1,6 +1,6 @@
 package br.com.blas.forum.user.database.model
 
-import br.com.blas.forum.user.model.User
+import br.com.blas.forum.user.entity.User
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import javax.persistence.*
 

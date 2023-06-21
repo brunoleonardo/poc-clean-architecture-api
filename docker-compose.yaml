@@ -13,4 +13,4 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: secret
     volumes:
-      - .db:/var/lib/mysql
+      - /home/bruno/dev/databases/volumes/mysql:/var/lib/mysql

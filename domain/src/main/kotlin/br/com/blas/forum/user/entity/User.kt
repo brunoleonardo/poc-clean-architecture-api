@@ -1,4 +1,4 @@
-package br.com.blas.forum.user.model
+package br.com.blas.forum.user.entity
 
 data class User(
     val id: Int? = null,

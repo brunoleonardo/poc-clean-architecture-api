@@ -1,11 +1,11 @@
 package br.com.blas.forum.user.entrypoint.rest.dto
 
-import br.com.blas.forum.user.model.User
+import br.com.blas.forum.user.entity.User
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.Size
 
-data class SaveUserDTO(
+data class SaveUserDto(
     val id: Int?,
 
     @field:NotEmpty(message = "Name cannot be empty")
@@ -18,7 +18,7 @@ data class SaveUserDTO(
     val email: String
 ) {
     companion object {
-        fun SaveUserDTO.toDomain(): User {
+        fun SaveUserDto.toDomain(): User {
             return User(id, name, email)
         }
     }
