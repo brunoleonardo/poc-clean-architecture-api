@@ -1,3 +1,3 @@
 package br.com.blas.forum.exception
 
-class BusinessException(message: String? = "") : RuntimeException(message)
+class BusinessException(message: String?) : RuntimeException(message)

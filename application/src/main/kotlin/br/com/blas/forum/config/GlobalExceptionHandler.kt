@@ -1,7 +1,7 @@
 package br.com.blas.forum.config
 
 import br.com.blas.forum.exception.BusinessException
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException
+import br.com.blas.forum.exception.NotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler

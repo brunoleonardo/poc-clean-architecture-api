@@ -18,9 +18,9 @@ internal class SaveUserUseCaseTest {
 
     @MockK
     lateinit var saveUserGateway: SaveUserGateway
-    
+
     @Test
-    fun `Should receive a user and saved in database`() {
+    fun `Should receive a user and saved in database with success`() {
         // Given
         val user = User(name = "User 1", email = "user@gmail.com")
 
