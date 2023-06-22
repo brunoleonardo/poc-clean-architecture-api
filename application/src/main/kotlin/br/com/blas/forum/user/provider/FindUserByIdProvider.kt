@@ -9,8 +9,12 @@ import org.springframework.stereotype.Component
 @Component
 class FindUserByIdProvider(private val userModelRepository: UserModelRepository) : FindUserByIdGateway {
 
+    companion object {
+        const val USER_NOT_FOUND = "User not found"
+    }
+
     override fun execute(userId: Int): Result<User> {
-        val user = userModelRepository.findById(userId).orElseThrow { NotFoundException("User not found") }
+        val user = userModelRepository.findById(userId).orElseThrow { NotFoundException(USER_NOT_FOUND) }
 
         return Result.success(user.toDomain())
     }

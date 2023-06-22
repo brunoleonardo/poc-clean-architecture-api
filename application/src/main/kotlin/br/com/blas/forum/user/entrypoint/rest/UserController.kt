@@ -1,9 +1,9 @@
 package br.com.blas.forum.user.entrypoint.rest
 
-import br.com.blas.forum.user.entrypoint.rest.dto.RegisterUserDto
-import br.com.blas.forum.user.entrypoint.rest.dto.RegisterUserDto.Companion.toDomain
-import br.com.blas.forum.user.entrypoint.rest.dto.UserDto
-import br.com.blas.forum.user.entrypoint.rest.dto.UserRegisteredDto
+import br.com.blas.forum.user.entrypoint.rest.dto.request.RegisterUserRequest
+import br.com.blas.forum.user.entrypoint.rest.dto.request.RegisterUserRequest.Companion.toDomain
+import br.com.blas.forum.user.entrypoint.rest.dto.response.UserRegisteredResponse
+import br.com.blas.forum.user.entrypoint.rest.dto.response.UserResponse
 import br.com.blas.forum.user.usecase.FindUserByIdUseCase
 import br.com.blas.forum.user.usecase.RegisterUserUseCase
 import org.springframework.http.ResponseEntity
@@ -24,18 +24,18 @@ class UserController(
 
     @PostMapping
     fun register(
-        @RequestBody @Valid registerUserDTO: RegisterUserDto,
+        @RequestBody @Valid request: RegisterUserRequest,
         uriBuilder: UriComponentsBuilder
-    ): ResponseEntity<UserRegisteredDto> {
-        val userCreated = registerUserUseCase.execute(registerUserDTO.toDomain()).getOrThrow()
+    ): ResponseEntity<UserRegisteredResponse> {
+        val userCreated = registerUserUseCase.execute(request.toDomain()).getOrThrow()
         val uri = uriBuilder.path("$URI/${userCreated.id}").build().toUri()
 
-        return ResponseEntity.created(uri).body(UserRegisteredDto.fromDomain(userCreated))
+        return ResponseEntity.created(uri).body(UserRegisteredResponse.fromDomain(userCreated))
     }
 
     @GetMapping("/{id}")
-    fun getById(@PathVariable id: Int): ResponseEntity<UserDto> {
-        return ResponseEntity.ok(UserDto.fromDomain(findUserByIdUseCase.execute(id).getOrThrow()))
+    fun getById(@PathVariable id: Int): ResponseEntity<UserResponse> {
+        return ResponseEntity.ok(UserResponse.fromDomain(findUserByIdUseCase.execute(id).getOrThrow()))
     }
 
 }
