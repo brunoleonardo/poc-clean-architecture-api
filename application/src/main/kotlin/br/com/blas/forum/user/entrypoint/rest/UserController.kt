@@ -9,6 +9,7 @@ import br.com.blas.forum.user.usecase.FindUserByIdUseCase
 import br.com.blas.forum.user.usecase.FindUserPaginatedUseCase
 import br.com.blas.forum.user.usecase.RegisterUserUseCase
 import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.util.UriComponentsBuilder
@@ -27,13 +28,13 @@ class UserController(
     }
 
     @GetMapping
-    fun list(pagination: Pageable): Page<UserResponse> {
+    fun list(@PageableDefault(size = 5, page = 0) pagination: Pageable): Page<UserResponse> {
         val result = findUserPaginatedUseCase.execute(pagination.pageSize, pagination.pageNumber)
 
         return Page(
+            result.page,
             result.totalPages,
             result.totalElements,
-            result.number,
             result.isLast,
             result.content.map { UserResponse.fromDomain(it) })
     }

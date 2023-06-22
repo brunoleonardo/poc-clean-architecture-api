@@ -15,9 +15,9 @@ class FindUserPaginatedProvider(private val userModelRepository: UserModelReposi
         val result = userModelRepository.findAll(paging)
 
         return Page(
+            result.number,
             result.totalPages,
             result.totalElements,
-            result.number,
             result.isLast,
             result.content.map { it.toDomain() })
     }
