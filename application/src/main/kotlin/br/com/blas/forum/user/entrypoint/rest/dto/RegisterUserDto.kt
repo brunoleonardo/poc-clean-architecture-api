@@ -5,7 +5,7 @@ import javax.validation.constraints.Email
 import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.Size
 
-data class SaveUserDto(
+data class RegisterUserDto(
     val id: Int?,
 
     @field:NotEmpty(message = "Name cannot be empty")
@@ -18,7 +18,7 @@ data class SaveUserDto(
     val email: String
 ) {
     companion object {
-        fun SaveUserDto.toDomain(): User {
+        fun RegisterUserDto.toDomain(): User {
             return User(id, name, email)
         }
     }

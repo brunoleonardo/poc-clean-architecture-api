@@ -1,7 +1,7 @@
 package br.com.blas.forum.user.usecase
 
 import br.com.blas.forum.user.entity.User
-import br.com.blas.forum.user.gateway.SaveUserGateway
+import br.com.blas.forum.user.gateway.RegisterUserGateway
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-internal class SaveUserUseCaseTest {
+internal class RegisterUserUseCaseTest {
 
     @BeforeEach
     fun initMocks() {
@@ -17,7 +17,7 @@ internal class SaveUserUseCaseTest {
     }
 
     @MockK
-    lateinit var saveUserGateway: SaveUserGateway
+    lateinit var registerUserGateway: RegisterUserGateway
 
     @Test
     fun `Should receive a user and saved in database with success`() {
@@ -25,9 +25,9 @@ internal class SaveUserUseCaseTest {
         val user = User(name = "User 1", email = "user@gmail.com")
 
         // When
-        coEvery { saveUserGateway.execute(any()) } returns Result.success(user)
+        coEvery { registerUserGateway.execute(any()) } returns Result.success(user)
 
-        val result = SaveUserUseCase(saveUserGateway).execute(user)
+        val result = RegisterUserUseCase(registerUserGateway).execute(user)
 
         // Then
         assertTrue(result.isSuccess)
@@ -39,9 +39,9 @@ internal class SaveUserUseCaseTest {
         val userInvalid = User(name = "", email = "user@gmail.com")
 
         // When
-        coEvery { saveUserGateway.execute(any()) } returns Result.failure(Exception())
+        coEvery { registerUserGateway.execute(any()) } returns Result.failure(Exception())
 
-        val result = SaveUserUseCase(saveUserGateway).execute(userInvalid)
+        val result = RegisterUserUseCase(registerUserGateway).execute(userInvalid)
 
         // Then
         assertTrue(result.isFailure)
@@ -53,9 +53,9 @@ internal class SaveUserUseCaseTest {
         val userInvalid = User(name = "User 1", email = "invalid email")
 
         // When
-        coEvery { saveUserGateway.execute(any()) } returns Result.failure(Exception())
+        coEvery { registerUserGateway.execute(any()) } returns Result.failure(Exception())
 
-        val result = SaveUserUseCase(saveUserGateway).execute(userInvalid)
+        val result = RegisterUserUseCase(registerUserGateway).execute(userInvalid)
 
         // Then
         assertTrue(result.isFailure)

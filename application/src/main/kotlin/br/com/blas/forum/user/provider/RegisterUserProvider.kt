@@ -4,11 +4,11 @@ import br.com.blas.forum.exception.BusinessException
 import br.com.blas.forum.user.database.model.UserModel
 import br.com.blas.forum.user.database.repository.UserModelRepository
 import br.com.blas.forum.user.entity.User
-import br.com.blas.forum.user.gateway.SaveUserGateway
+import br.com.blas.forum.user.gateway.RegisterUserGateway
 import org.springframework.stereotype.Component
 
 @Component
-class SaveUserProvider(private val userModelRepository: UserModelRepository) : SaveUserGateway {
+class RegisterUserProvider(private val userModelRepository: UserModelRepository) : RegisterUserGateway {
 
     override fun execute(user: User): Result<User> {
         if (userModelRepository.existsByEmail(user.email)) {
