@@ -6,8 +6,6 @@ import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.Size
 
 data class RegisterUserRequest(
-    val id: Int?,
-
     @field:NotEmpty(message = "Name cannot be empty")
     @field:Size(min = 5, max = 100, message = "Name must be between 5 and 100 characteres")
     val name: String,
@@ -19,7 +17,7 @@ data class RegisterUserRequest(
 ) {
     companion object {
         fun RegisterUserRequest.toDomain(): User {
-            return User(id, name, email)
+            return User(id = null, name, email)
         }
     }
 }

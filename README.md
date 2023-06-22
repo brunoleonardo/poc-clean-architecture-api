@@ -14,7 +14,7 @@ Forum Api para estudo do padrão arquitetural 'Clean Arquitecture' com 'Kotlin' 
 ## Tecnologias do Projeto
 
 - [Kotlin](https://kotlinlang.org/)
-- [JDK Amazon Corretto 17](https://docs.aws.amazon.com/corretto/index.html)
+- [JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 - [Spring Boot 2.7.1](https://spring.io/projects/spring-boot)
 - [MySQL](https://www.mysql.com/)
 - [Docker](https://www.docker.com/)

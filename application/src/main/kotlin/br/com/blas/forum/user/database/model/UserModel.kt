@@ -5,7 +5,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import javax.persistence.*
 
 @Entity(name = "user")
-@EntityListeners(AuditingEntityListener::class)
 data class UserModel(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
