@@ -1,6 +1,6 @@
 # Forum Api
 
-Forum Api para estudo do padrão arquitetural 'Clean Arquitecture' com 'Kotlin' :)
+Forum Api para estudo do padrão arquitetural 'Clean Arquitecture' com 'Kotlin' :grin:
 
 ## Definições do Projeto
 
@@ -10,7 +10,6 @@ Forum Api para estudo do padrão arquitetural 'Clean Arquitecture' com 'Kotlin' 
 - [Arquitetura Limpa](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 - [SOLID](https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html)
 - Testes de Unidade
-- Testes de integração
 
 ## Tecnologias do Projeto
 
@@ -43,6 +42,7 @@ git clone https://github.com/brunoleonardo/poc-clean-architecture-api.git
 ```
 
 2) Baixe as dependências do Gradle usando sua IDE (sugerimos a [IntelliJ](https://www.jetbrains.com/pt-br/idea/))
+
 3) Acessar a pasta do projeto e subir o container que possui o banco de dados. **Caso já possua outro serviço na porta
    3306 (MySQL), irá ocorrer um erro**:
 
@@ -51,4 +51,5 @@ docker-compose up
 ```
 
 4) Usando a IDE, executar a classe principal `applicaton/src/main/kotlin/br/com/blas/forum/Startup.kt`.
+
 5) Se tudo der certo, a aplicação irá subir em `localhost:8080`
