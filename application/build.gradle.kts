@@ -44,14 +44,15 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
 
     runtimeOnly("mysql:mysql-connector-java")
-    runtimeOnly("com.h2database:h2")
 
     compileOnly("org.springframework.boot:spring-boot-devtools")
 
     testImplementation("io.mockk:mockk:1.12.4")
     testImplementation(kotlin("test"))
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("com.github.tomakehurst:wiremock-jre8:2.30.0")
+    testImplementation("com.github.tomakehurst:wiremock-jre8:2.33.2")
+    testImplementation("org.testcontainers:junit-jupiter:1.17.6")
+    testImplementation("org.testcontainers:mysql:1.17.6")
 }
 
 dependencyManagement {

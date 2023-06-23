@@ -55,6 +55,11 @@ class UserController(
         return ResponseEntity.created(uri).body(UserRegisteredResponse.fromDomain(userCreated))
     }
 
+//    @PutMapping
+//    fun update(@RequestBody @Valid request: UpdateUserRequest): ResponseEntity<UserUpdatedResponse> {
+//        val userUpdated =
+//    }
+
 }
 
 
