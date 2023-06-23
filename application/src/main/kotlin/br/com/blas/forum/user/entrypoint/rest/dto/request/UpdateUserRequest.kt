@@ -8,7 +8,7 @@ import javax.validation.constraints.Size
 
 data class UpdateUserRequest(
     @field:NotNull
-    val id: Long,
+    val id: Int,
 
     @field:NotEmpty(message = "Name cannot be empty")
     @field:Size(min = 5, max = 100, message = "Name must be between 5 and 100 characteres")
@@ -21,7 +21,7 @@ data class UpdateUserRequest(
 ) {
     companion object {
         fun UpdateUserRequest.toDomain(): User {
-            return User(id = null, name, email)
+            return User(id, name, email)
         }
     }
 }

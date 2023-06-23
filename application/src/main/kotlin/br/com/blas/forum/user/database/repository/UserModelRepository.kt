@@ -9,4 +9,5 @@ interface UserModelRepository : JpaRepository<UserModel, Int> {
 
     fun existsByEmail(email: String): Boolean
 
+    fun existsByEmailAndIdNot(email: String, id: Int): Boolean
 }
