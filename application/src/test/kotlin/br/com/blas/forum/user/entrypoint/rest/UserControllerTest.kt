@@ -1,7 +1,8 @@
 package br.com.blas.forum.user.entrypoint.rest
 
 import br.com.blas.forum.config.BaseTest
-import br.com.blas.forum.helpers.TestsSqlScripts.Companion.CLEAR_ALL
+import br.com.blas.forum.helpers.TestsSqlScripts.Companion.CLEAR_ALL_TABLES
+import br.com.blas.forum.helpers.TestsSqlScripts.Companion.USERS
 import br.com.blas.forum.user.database.repository.UserModelRepository
 import br.com.blas.forum.user.entrypoint.rest.dto.request.RegisterUserRequest
 import com.github.tomakehurst.wiremock.client.WireMock.aResponse
@@ -25,7 +26,7 @@ internal class UserControllerTest : BaseTest() {
     lateinit var userModelRepository: UserModelRepository
 
     @Test
-    @Sql(CLEAR_ALL)
+    @Sql(CLEAR_ALL_TABLES, USERS)
     fun `Should receive a user and saved in database with success`() {
         val registerUserRequest = RegisterUserRequest("User 1", "user@gmail.com")
         val registerUserRequestInJson = mapper.writeValueAsString(registerUserRequest)
@@ -56,7 +57,7 @@ internal class UserControllerTest : BaseTest() {
     }
 
     @Test
-    @Sql(CLEAR_ALL)
+    @Sql(CLEAR_ALL_TABLES, USERS)
     fun `Should receive a user with an invalid name and not save to the database`() {
         val registerUserRequest = RegisterUserRequest("", "user@gmail.com")
         val registerUserRequestInJson = mapper.writeValueAsString(registerUserRequest)
@@ -87,7 +88,7 @@ internal class UserControllerTest : BaseTest() {
     }
 
     @Test
-    @Sql(CLEAR_ALL)
+    @Sql(CLEAR_ALL_TABLES, USERS)
     fun `Should receive a user with an invalid email and not save to the database`() {
         val registerUserRequest = RegisterUserRequest("User 1", "gmail.com")
         val registerUserRequestInJson = mapper.writeValueAsString(registerUserRequest)
