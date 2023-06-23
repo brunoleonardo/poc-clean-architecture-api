@@ -1,8 +1,10 @@
 package br.com.blas.forum.user.database.model
 
 import br.com.blas.forum.user.entity.User
-import org.springframework.data.jpa.domain.support.AuditingEntityListener
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
 
 @Entity(name = "user")
 data class UserModel(
@@ -10,8 +12,15 @@ data class UserModel(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int? = null,
     val name: String,
-    val email: String
+    val email: String,
 ) {
+
+    fun toDomain() = User(
+        id = id,
+        name = name,
+        email = email
+    )
+
     companion object {
         fun fromDomain(user: User) = UserModel(
             id = user.id,
@@ -20,9 +29,4 @@ data class UserModel(
         )
     }
 
-    fun toDomain() = User(
-        id = id,
-        name = name,
-        email = email
-    )
 }

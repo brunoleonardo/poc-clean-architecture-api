@@ -67,6 +67,11 @@ class UserController(
         return ResponseEntity.ok(UserUpdatedResponse.fromDomain(userUpdated))
     }
 
+    @DeleteMapping
+    fun detele() {
+        TODO("Test")
+    }
+
 }
 
 
