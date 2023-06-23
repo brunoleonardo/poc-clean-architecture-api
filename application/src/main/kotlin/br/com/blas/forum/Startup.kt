@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.info.License
 import io.swagger.v3.oas.annotations.servers.Server
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 
 @OpenAPIDefinition(
     servers = [Server(url = "/")],
@@ -17,7 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing
         license = License(name = "Bruno Leonardo - All Rights Reserved", url = "")
     )
 )
-@EnableJpaAuditing
+
 @SpringBootApplication
 class Startup
 

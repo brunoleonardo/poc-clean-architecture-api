@@ -32,7 +32,6 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-ui:1.6.9")
     implementation("org.springdoc:springdoc-openapi-webmvc-core:1.6.9")
     implementation("org.springdoc:springdoc-openapi-kotlin:1.6.9")
-    implementation("org.springdoc:springdoc-openapi-data-rest:1.7.0")
     implementation("org.springframework:spring-jms")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -44,14 +43,15 @@ dependencies {
     implementation("com.github.ben-manes.caffeine:caffeine:3.1.1")
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
 
-    runtimeOnly("com.h2database:h2")
     runtimeOnly("mysql:mysql-connector-java")
+    runtimeOnly("com.h2database:h2")
+
     compileOnly("org.springframework.boot:spring-boot-devtools")
 
     testImplementation("io.mockk:mockk:1.12.4")
     testImplementation(kotlin("test"))
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("com.github.tomakehurst:wiremock-jre8:2.25.1")
+    testImplementation("com.github.tomakehurst:wiremock-jre8:2.30.0")
 }
 
 dependencyManagement {

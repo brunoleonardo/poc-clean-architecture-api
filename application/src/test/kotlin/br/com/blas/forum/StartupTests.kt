@@ -1,4 +1,4 @@
-package br.com.blas.forum.application
+package br.com.blas.forum
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
