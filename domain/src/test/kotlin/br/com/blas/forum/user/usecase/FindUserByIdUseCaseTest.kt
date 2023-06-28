@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
+
 internal class FindUserByIdUseCaseTest {
 
     @BeforeEach
@@ -38,7 +39,7 @@ internal class FindUserByIdUseCaseTest {
     @Test
     fun `Should fetch a user by id that does not exist in the database`() {
         // Given
-        val userId = 1
+        val userId = (0..1000).random()
 
         // When
         coEvery { findUserByIdGateway.execute(any()) } returns Result.failure(NotFoundException(""))
@@ -48,6 +49,5 @@ internal class FindUserByIdUseCaseTest {
         // Then
         Assertions.assertTrue(result.isFailure)
     }
-
 
 }

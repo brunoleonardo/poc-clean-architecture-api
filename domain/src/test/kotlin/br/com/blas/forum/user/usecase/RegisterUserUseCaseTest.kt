@@ -22,7 +22,7 @@ internal class RegisterUserUseCaseTest {
     @Test
     fun `Should receive a user and saved in database with success`() {
         // Given
-        val user = User(name = "User 1", email = "user@gmail.com")
+        val user = User(id = 1, name = "User 1", email = "user@gmail.com")
 
         // When
         coEvery { registerUserGateway.execute(any()) } returns Result.success(user)
@@ -36,7 +36,7 @@ internal class RegisterUserUseCaseTest {
     @Test
     fun `Should receive a user with an invalid name and not save to the database`() {
         // Given
-        val userInvalid = User(name = "", email = "user@gmail.com")
+        val userInvalid = User(id = null, name = "", email = "user@gmail.com")
 
         // When
         coEvery { registerUserGateway.execute(any()) } returns Result.failure(Exception())
@@ -50,7 +50,7 @@ internal class RegisterUserUseCaseTest {
     @Test
     fun `Should receive a user with an invalid email and not save to the database`() {
         // Given
-        val userInvalid = User(name = "User 1", email = "invalid email")
+        val userInvalid = User(id = 1, name = "User 1", email = "invalid email")
 
         // When
         coEvery { registerUserGateway.execute(any()) } returns Result.failure(Exception())
