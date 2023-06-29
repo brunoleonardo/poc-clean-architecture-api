@@ -8,8 +8,7 @@ data class UserResponse(
     val email: String
 ) {
     companion object {
-        fun fromDomain(user: User): UserResponse {
-            return UserResponse(id = user.id, name = user.name, email = user.email)
-        }
+        fun fromDomain(user: User) = UserResponse(id = user.id, name = user.name, email = user.email)
+
     }
 }
