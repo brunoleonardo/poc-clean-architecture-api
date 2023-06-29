@@ -1,12 +1,10 @@
 package br.com.blas.forum.user.database.model
 
 import br.com.blas.forum.user.entity.User
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 
-@Entity(name = "user")
+@Entity
+@Table(name = "user")
 data class UserModel(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,7 @@
 # Forum Api
 
-Forum Api para estudo do padrão arquitetural 'Clean Arquitecture' com 'Kotlin' :grin:
+POC de uma Api Rest para um Fórum de perguntas e respostas bem simplificado para estudo do padrão arquitetural 'Clean
+Arquitecture' com 'Kotlin' :grin:
 
 ## Definições do Projeto
 
@@ -10,13 +11,14 @@ Forum Api para estudo do padrão arquitetural 'Clean Arquitecture' com 'Kotlin' 
 - [Arquitetura Limpa](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 - [SOLID](https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html)
 - Testes de Unidade
+- Testes de Integração
 
 ## Tecnologias do Projeto
 
 - [Kotlin](https://kotlinlang.org/)
 - [JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 - [Spring Boot 2.7.1](https://spring.io/projects/spring-boot)
-- [MySQL](https://www.mysql.com/)
+- [MySQL 8](https://www.mysql.com/)
 - [Docker](https://www.docker.com/)
 - [Gradle 7.4.1](https://gradle.org/)
 - [Docker Compose 3](https://docs.docker.com/compose/compose-file/compose-file-v3/) (apenas para ambiente local)
