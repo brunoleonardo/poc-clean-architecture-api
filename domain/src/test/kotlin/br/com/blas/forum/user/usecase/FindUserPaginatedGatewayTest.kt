@@ -25,18 +25,12 @@ internal class FindUserPaginatedGatewayTest {
         // Given
         val pageSize = 5
         val pageNumber = 0
-        val users = listOf(
-            User(1, "User 1", "user1@gmail.com"),
-            User(2, "User 2", "user2@gmail.com"),
-            User(3, "User 3", "user3@gmail.com"),
-            User(4, "User 4", "user4@gmail.com"),
-            User(5, "User 5", "user5@gmail.com")
-        )
+        val users = generateUsersByQuantity(4)
 
         val page = Page(
             page = pageNumber,
             totalPages = 1,
-            totalElements = pageSize.toLong(),
+            totalElements = users.size.toLong(),
             isLast = true,
             content = users
         )
@@ -49,8 +43,44 @@ internal class FindUserPaginatedGatewayTest {
         // Then
         Assertions.assertTrue(result.page == pageNumber)
         Assertions.assertTrue(result.totalPages == 1)
-        Assertions.assertTrue(result.totalElements == users.size.toLong())
+        Assertions.assertTrue(result.totalElements == 4L)
         Assertions.assertTrue(result.isLast)
+    }
+
+    @Test
+    fun `Should fetch a large list of users and then turn it into multiple pages`() {
+        // Given
+        val pageSize = 5
+        val pageNumber = 0
+        val users = generateUsersByQuantity(50)
+
+        val page = Page(
+            page = pageNumber,
+            totalPages = 10,
+            totalElements = users.size.toLong(),
+            isLast = false,
+            content = users
+        )
+
+        // When
+        coEvery { findUserPaginatedGateway.execute(any(), any()) } returns page
+
+        val result = FindUserPaginatedUseCase(findUserPaginatedGateway).execute(pageSize, pageNumber)
+
+        // Then
+        Assertions.assertTrue(result.page == pageNumber)
+        Assertions.assertTrue(result.totalPages == (users.size / pageSize))
+        Assertions.assertTrue(result.totalElements == users.size.toLong())
+        Assertions.assertFalse(result.isLast)
+    }
+
+    private fun generateUsersByQuantity(quantity: Int): List<User> {
+        val list = mutableListOf<User>()
+        for (i in 1..quantity) {
+            list.add(User(i, "User $i", "user$i@gmail.com"))
+        }
+
+        return list
     }
 
 }
