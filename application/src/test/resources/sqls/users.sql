@@ -1,5 +1,5 @@
 INSERT INTO `user` (`id`, `name`, `email`)
-VALUES (1, 'João Silva', 'joao@gmail.com');
+VALUES (1, 'Alberto Silva', 'beto@gmail.com');
 
 INSERT INTO `user` (`id`, `name`, `email`)
 VALUES (2, 'Carlos Silva', 'carlos@gmail.com');

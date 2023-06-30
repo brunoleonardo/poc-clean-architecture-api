@@ -1,2 +1,3 @@
 DELETE
-FROM user;
+FROM user
+WHERE id > 0;

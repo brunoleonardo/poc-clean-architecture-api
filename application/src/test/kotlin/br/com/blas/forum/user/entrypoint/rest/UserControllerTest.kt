@@ -5,8 +5,8 @@ import br.com.blas.forum.helpers.TestsSqlScripts.Companion.CLEAR_ALL_TABLES
 import br.com.blas.forum.helpers.TestsSqlScripts.Companion.USERS
 import br.com.blas.forum.user.database.repository.UserModelRepository
 import br.com.blas.forum.user.entrypoint.rest.dto.request.RegisterUserRequest
-import com.github.tomakehurst.wiremock.client.WireMock.aResponse
-import com.github.tomakehurst.wiremock.client.WireMock.post
+import br.com.blas.forum.user.entrypoint.rest.dto.response.UserResponse
+import com.github.tomakehurst.wiremock.client.WireMock.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpHeaders
@@ -16,6 +16,7 @@ import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.jdbc.Sql
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
@@ -25,6 +26,37 @@ internal class UserControllerTest : BaseTest() {
     @Autowired
     lateinit var userModelRepository: UserModelRepository
 
+    //region GET BY ID
+    @Test
+    @Sql(CLEAR_ALL_TABLES, USERS)
+    fun `Should bring existing user by id`() {
+        val userResponse = UserResponse(1, "Alberto Silva", "beto@gmail.com")
+        val expectedResponse = mapper.writeValueAsString(userResponse)
+
+        wireMockServer.stubFor(
+            get(UserController.URI + "/${userResponse.id}")
+                .willReturn(
+                    aResponse()
+                        .withStatus(HttpStatus.OK.value())
+                        .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                )
+        )
+
+        val mockMvcResponse = mockMvc.perform(
+            MockMvcRequestBuilders.get(UserController.URI + "/${userResponse.id}")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+        )
+            .andExpect(status().isOk)
+            .andReturn()
+
+        val response = mockMvcResponse.response.contentAsString
+
+        assertEquals(response, expectedResponse)
+    }
+    //endregion
+
+    //region REGISTER
     @Test
     @Sql(CLEAR_ALL_TABLES, USERS)
     fun `Should receive a user and saved in database with success`() {
@@ -117,4 +149,5 @@ internal class UserControllerTest : BaseTest() {
 
         assertNull(userRegistered)
     }
+    //endregion
 }
