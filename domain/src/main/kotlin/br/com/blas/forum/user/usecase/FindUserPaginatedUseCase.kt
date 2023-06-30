@@ -1,6 +1,6 @@
 package br.com.blas.forum.user.usecase
 
-import br.com.blas.forum.page.Page
+import br.com.blas.forum.data.model.Page
 import br.com.blas.forum.user.entity.User
 import br.com.blas.forum.user.gateway.FindUserPaginatedGateway
 import javax.inject.Named

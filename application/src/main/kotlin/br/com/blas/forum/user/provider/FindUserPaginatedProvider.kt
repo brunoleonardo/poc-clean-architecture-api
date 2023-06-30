@@ -1,6 +1,6 @@
 package br.com.blas.forum.user.provider
 
-import br.com.blas.forum.page.Page
+import br.com.blas.forum.data.model.Page
 import br.com.blas.forum.user.database.repository.UserModelRepository
 import br.com.blas.forum.user.entity.User
 import br.com.blas.forum.user.gateway.FindUserPaginatedGateway

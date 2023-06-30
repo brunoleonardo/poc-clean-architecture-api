@@ -1,4 +1,4 @@
-package br.com.blas.forum.page
+package br.com.blas.forum.data.model
 
 data class Page<T>(
     val page: Int,

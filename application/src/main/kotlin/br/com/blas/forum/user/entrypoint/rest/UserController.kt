@@ -1,6 +1,6 @@
 package br.com.blas.forum.user.entrypoint.rest
 
-import br.com.blas.forum.page.Page
+import br.com.blas.forum.data.model.Page
 import br.com.blas.forum.user.entrypoint.rest.dto.request.RegisterUserRequest
 import br.com.blas.forum.user.entrypoint.rest.dto.request.RegisterUserRequest.Companion.toDomain
 import br.com.blas.forum.user.entrypoint.rest.dto.request.UpdateUserRequest

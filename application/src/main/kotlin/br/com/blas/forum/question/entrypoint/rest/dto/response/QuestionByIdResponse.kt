@@ -1,7 +1,6 @@
 package br.com.blas.forum.question.entrypoint.rest.dto.response
 
 import br.com.blas.forum.question.entity.Question
-import br.com.blas.forum.user.entrypoint.rest.dto.response.UserResponse
 
 data class QuestionByIdResponse(
     val id: Int?,
@@ -10,6 +9,12 @@ data class QuestionByIdResponse(
     val user: UserResponse,
     // TODO: ANSWERS
 ) {
+    data class UserResponse(
+        val id: Int?,
+        val name: String,
+        val email: String
+    )
+
     companion object {
         fun fromDomain(question: Question): QuestionByIdResponse {
             val user = question.user
