@@ -41,7 +41,8 @@ class UserController(
             result.totalPages,
             result.totalElements,
             result.isLast,
-            result.content.map { UserResponse.fromDomain(it) })
+            result.content.map { UserResponse.fromDomain(it) },
+        )
     }
 
     @GetMapping("/{id}")

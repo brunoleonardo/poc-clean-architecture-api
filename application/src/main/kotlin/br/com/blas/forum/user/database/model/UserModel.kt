@@ -16,14 +16,14 @@ data class UserModel(
     fun toDomain() = User(
         id = id,
         name = name,
-        email = email
+        email = email,
     )
 
     companion object {
         fun fromDomain(user: User) = UserModel(
             id = user.id,
             name = user.name,
-            email = user.email
+            email = user.email,
         )
     }
 

@@ -26,7 +26,6 @@ internal class UserControllerTest : BaseTest() {
     @Autowired
     lateinit var userModelRepository: UserModelRepository
 
-    //region GET BY ID
     @Test
     @Sql(CLEAR_ALL_TABLES, USERS)
     fun `Should bring existing user by id`() {
@@ -54,9 +53,7 @@ internal class UserControllerTest : BaseTest() {
 
         assertEquals(response, expectedResponse)
     }
-    //endregion
 
-    //region REGISTER
     @Test
     @Sql(CLEAR_ALL_TABLES, USERS)
     fun `Should receive a user and saved in database with success`() {
@@ -83,7 +80,9 @@ internal class UserControllerTest : BaseTest() {
 
         val users = userModelRepository.findAll()
         val userRegistered =
-            users.firstOrNull { it.id != null && it.name == registerUserRequest.name && it.email == registerUserRequest.email }
+            users.firstOrNull {
+                it.id != null && it.name == registerUserRequest.name && it.email == registerUserRequest.email
+            }
 
         assertNotNull(userRegistered)
     }
@@ -114,7 +113,9 @@ internal class UserControllerTest : BaseTest() {
 
         val users = userModelRepository.findAll()
         val userRegistered =
-            users.firstOrNull { it.id != null && it.name == registerUserRequest.name && it.email == registerUserRequest.email }
+            users.firstOrNull {
+                it.id != null && it.name == registerUserRequest.name && it.email == registerUserRequest.email
+            }
 
         assertNull(userRegistered)
     }
@@ -145,9 +146,11 @@ internal class UserControllerTest : BaseTest() {
 
         val users = userModelRepository.findAll()
         val userRegistered =
-            users.firstOrNull { it.id != null && it.name == registerUserRequest.name && it.email == registerUserRequest.email }
+            users.firstOrNull {
+                it.id != null && it.name == registerUserRequest.name && it.email == registerUserRequest.email
+            }
 
         assertNull(userRegistered)
     }
-    //endregion
+
 }
