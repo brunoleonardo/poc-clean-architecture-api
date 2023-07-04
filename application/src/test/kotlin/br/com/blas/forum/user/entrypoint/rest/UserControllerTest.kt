@@ -1,14 +1,17 @@
 package br.com.blas.forum.user.entrypoint.rest
 
 import br.com.blas.forum.config.BaseTest
+import br.com.blas.forum.data.model.Page
 import br.com.blas.forum.helpers.TestsSqlScripts.Companion.CLEAR_ALL_TABLES
 import br.com.blas.forum.helpers.TestsSqlScripts.Companion.USERS
 import br.com.blas.forum.user.database.repository.UserModelRepository
 import br.com.blas.forum.user.entrypoint.rest.dto.request.RegisterUserRequest
 import br.com.blas.forum.user.entrypoint.rest.dto.response.UserResponse
+import com.fasterxml.jackson.module.kotlin.readValue
 import com.github.tomakehurst.wiremock.client.WireMock.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.PageRequest
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -16,15 +19,34 @@ import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.jdbc.Sql
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
-import kotlin.test.assertNull
+import kotlin.test.*
 
 @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
 internal class UserControllerTest : BaseTest() {
 
     @Autowired
     lateinit var userModelRepository: UserModelRepository
+
+    @Test
+    @Sql(CLEAR_ALL_TABLES, USERS)
+    fun `Should return a paged list of users`() {
+        val pageable = PageRequest.of(0, 10)
+
+        val mockMvcResponse = mockMvc.perform(
+            MockMvcRequestBuilders.get(UserController.URI + "?page=${pageable.pageNumber}&size=${pageable.pageSize}")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+        )
+            .andExpect(status().isOk)
+            .andReturn()
+
+        val response: Page<UserResponse> = mapper.readValue(mockMvcResponse.response.contentAsString)
+
+        assertTrue(response.page == 0)
+        assertTrue(response.totalPages == 2)
+        assertFalse(response.isLast)
+        assertFalse(response.content.isEmpty())
+    }
 
     @Test
     @Sql(CLEAR_ALL_TABLES, USERS)
