@@ -8,7 +8,8 @@ import br.com.blas.forum.user.database.repository.UserModelRepository
 import br.com.blas.forum.user.entrypoint.rest.dto.request.RegisterUserRequest
 import br.com.blas.forum.user.entrypoint.rest.dto.response.UserResponse
 import com.fasterxml.jackson.module.kotlin.readValue
-import com.github.tomakehurst.wiremock.client.WireMock.*
+import com.github.tomakehurst.wiremock.client.WireMock.aResponse
+import com.github.tomakehurst.wiremock.client.WireMock.post
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.PageRequest
@@ -23,7 +24,6 @@ import kotlin.test.*
 
 @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
 internal class UserControllerTest : BaseTest() {
-
     @Autowired
     lateinit var userModelRepository: UserModelRepository
 
@@ -53,15 +53,6 @@ internal class UserControllerTest : BaseTest() {
     fun `Should bring existing user by id`() {
         val userResponse = UserResponse(1, "Alberto Silva", "beto@gmail.com")
         val expectedResponse = mapper.writeValueAsString(userResponse)
-
-        wireMockServer.stubFor(
-            get(UserController.URI + "/${userResponse.id}")
-                .willReturn(
-                    aResponse()
-                        .withStatus(HttpStatus.OK.value())
-                        .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                )
-        )
 
         val mockMvcResponse = mockMvc.perform(
             MockMvcRequestBuilders.get(UserController.URI + "/${userResponse.id}")
@@ -174,5 +165,4 @@ internal class UserControllerTest : BaseTest() {
 
         assertNull(userRegistered)
     }
-
 }

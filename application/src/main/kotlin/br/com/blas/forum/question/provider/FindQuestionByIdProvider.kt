@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class FindQuestionByIdProvider(private val questionRepository: QuestionModelRepository) : FindQuestionByIdGateway {
-
     companion object {
         const val QUESTION_NOT_FOUND = "Question not found"
     }
@@ -19,5 +18,4 @@ class FindQuestionByIdProvider(private val questionRepository: QuestionModelRepo
 
         return Result.success(question.toDomain())
     }
-
 }
