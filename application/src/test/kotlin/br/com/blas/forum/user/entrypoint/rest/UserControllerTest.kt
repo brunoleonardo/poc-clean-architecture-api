@@ -8,19 +8,19 @@ import br.com.blas.forum.user.database.repository.UserModelRepository
 import br.com.blas.forum.user.entrypoint.rest.dto.request.RegisterUserRequest
 import br.com.blas.forum.user.entrypoint.rest.dto.response.UserResponse
 import com.fasterxml.jackson.module.kotlin.readValue
-import com.github.tomakehurst.wiremock.client.WireMock.aResponse
-import com.github.tomakehurst.wiremock.client.WireMock.post
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.PageRequest
-import org.springframework.http.HttpHeaders
-import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.jdbc.Sql
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import kotlin.test.*
 
 @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
 internal class UserControllerTest : BaseTest() {
@@ -73,16 +73,6 @@ internal class UserControllerTest : BaseTest() {
         val registerUserRequest = RegisterUserRequest("User 1", "user@gmail.com")
         val registerUserRequestInJson = mapper.writeValueAsString(registerUserRequest)
 
-        wireMockServer.stubFor(
-            post(UserController.URI)
-                .willReturn(
-                    aResponse()
-                        .withStatus(HttpStatus.CREATED.value())
-                        .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                        .withBody(registerUserRequestInJson)
-                )
-        )
-
         mockMvc.perform(
             MockMvcRequestBuilders.post(UserController.URI)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -106,16 +96,6 @@ internal class UserControllerTest : BaseTest() {
         val registerUserRequest = RegisterUserRequest("", "user@gmail.com")
         val registerUserRequestInJson = mapper.writeValueAsString(registerUserRequest)
 
-        wireMockServer.stubFor(
-            post(UserController.URI)
-                .willReturn(
-                    aResponse()
-                        .withStatus(HttpStatus.CREATED.value())
-                        .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                        .withBody(registerUserRequestInJson)
-                )
-        )
-
         mockMvc.perform(
             MockMvcRequestBuilders.post(UserController.URI)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -138,16 +118,6 @@ internal class UserControllerTest : BaseTest() {
     fun `Should receive a user with an invalid email and not save to the database`() {
         val registerUserRequest = RegisterUserRequest("User 1", "gmail.com")
         val registerUserRequestInJson = mapper.writeValueAsString(registerUserRequest)
-
-        wireMockServer.stubFor(
-            post(UserController.URI)
-                .willReturn(
-                    aResponse()
-                        .withStatus(HttpStatus.CREATED.value())
-                        .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                        .withBody(registerUserRequestInJson)
-                )
-        )
 
         mockMvc.perform(
             MockMvcRequestBuilders.post(UserController.URI)
