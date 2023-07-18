@@ -1,9 +1,9 @@
 plugins {
-    id("org.springframework.boot") version "2.7.1" apply false
-    id("io.spring.dependency-management") version "1.0.11.RELEASE" apply false
-    kotlin("jvm") version "1.6.21"
-    kotlin("plugin.spring") version "1.6.21"
-    kotlin("plugin.jpa") version "1.6.21"
+    id("org.springframework.boot") version "2.7.13" apply false
+    id("io.spring.dependency-management") version "1.0.15.RELEASE" apply false
+    kotlin("jvm") version "1.9.0"
+    kotlin("plugin.spring") version "1.9.0"
+    kotlin("plugin.jpa") version "1.9.0"
     id("org.sonarqube") version "3.3" apply true
 }
 

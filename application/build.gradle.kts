@@ -29,30 +29,28 @@ dependencies {
     }
     implementation("org.springframework.boot:spring-boot-starter-undertow")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
-    implementation("org.springdoc:springdoc-openapi-ui:1.6.9")
-    implementation("org.springdoc:springdoc-openapi-webmvc-core:1.6.9")
-    implementation("org.springdoc:springdoc-openapi-kotlin:1.6.9")
+    implementation("org.springdoc:springdoc-openapi-ui:1.7.0")
+    implementation("org.springdoc:springdoc-openapi-webmvc-core:1.7.0")
+    implementation("org.springdoc:springdoc-openapi-kotlin:1.7.0")
     implementation("org.springframework:spring-jms")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.flywaydb:flyway-mysql")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.7.2")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("com.amazonaws:amazon-sqs-java-messaging-lib:2.0.0")
-    implementation("com.github.ben-manes.caffeine:caffeine:3.1.1")
-    implementation("com.squareup.okhttp3:okhttp:4.10.0")
 
-    runtimeOnly("mysql:mysql-connector-java")
+    runtimeOnly("com.mysql:mysql-connector-j:8.0.33")
 
     compileOnly("org.springframework.boot:spring-boot-devtools")
 
-    testImplementation("io.mockk:mockk:1.12.4")
+    testImplementation("io.mockk:mockk:1.13.5")
+    testImplementation("org.assertj:assertj-core:3.24.2")
     testImplementation(kotlin("test"))
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("com.github.tomakehurst:wiremock-jre8:2.33.2")
     testImplementation("org.testcontainers:junit-jupiter:1.17.6")
-    testImplementation("org.testcontainers:mysql:1.17.6")
+    testImplementation("org.testcontainers:mysql:1.18.3")
 }
 
 dependencyManagement {

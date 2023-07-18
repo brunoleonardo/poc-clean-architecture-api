@@ -14,8 +14,9 @@ repositories {
 
 dependencies {
     implementation("javax.inject:javax.inject:1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
-    testImplementation("io.mockk:mockk:1.12.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2")
+    testImplementation("io.mockk:mockk:1.13.5")
+    testImplementation("org.assertj:assertj-core:3.24.2")
     testImplementation(kotlin("test"))
 }
 
@@ -58,5 +59,5 @@ tasks.jacocoTestCoverageVerification {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "17"
 }

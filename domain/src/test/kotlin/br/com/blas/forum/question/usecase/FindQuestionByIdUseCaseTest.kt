@@ -1,13 +1,13 @@
 package br.com.blas.forum.question.usecase
 
 import br.com.blas.forum.exception.NotFoundException
-import br.com.blas.forum.question.entity.Question
+import br.com.blas.forum.helpers.model.QuestionTest
 import br.com.blas.forum.question.gateway.FindQuestionByIdGateway
-import br.com.blas.forum.user.entity.User
 import io.mockk.MockKAnnotations
-import io.mockk.coEvery
+import io.mockk.every
 import io.mockk.impl.annotations.MockK
-import org.junit.jupiter.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -23,32 +23,27 @@ internal class FindQuestionByIdUseCaseTest {
 
     @Test
     fun `Should fetch a question by id in the database with success`() {
-        // Given
-        val questionId = 1
-        val user = User(id = 1, name = "User 1", email = "user@gmail.com")
-        val question = Question(id = questionId, title = "Question 1", description = "Description question 1", user)
+        val question = QuestionTest.build(id = 1)
 
-        // When
-        coEvery { findQuestionByIdGateway.execute(any()) } returns Result.success(question)
+        every { findQuestionByIdGateway.execute(any()) } returns Result.success(question)
 
-        val result = FindQuestionByIdUseCase(findQuestionByIdGateway).execute(questionId)
+        val result = FindQuestionByIdUseCase(findQuestionByIdGateway).execute(question.id!!)
 
         // Then
-        Assertions.assertTrue(result.isSuccess)
+        assertTrue(result.isSuccess)
+        assertThat(result.getOrNull()?.id).isEqualTo(question.id!!)
+        assertThat(result.getOrNull()?.user?.id).isEqualTo(question.user.id)
     }
 
     @Test
     fun `Should fetch a question by id that does not exist in the database`() {
-        // Given
         val questionId = (0..1000).random()
 
-        // When
-        coEvery { findQuestionByIdGateway.execute(any()) } returns Result.failure(NotFoundException(""))
+        every { findQuestionByIdGateway.execute(any()) } returns Result.failure(NotFoundException(""))
 
         val result = FindQuestionByIdUseCase(findQuestionByIdGateway).execute(questionId)
 
-        // Then
-        Assertions.assertTrue(result.isFailure)
+        assertTrue(result.isFailure)
     }
 
 }

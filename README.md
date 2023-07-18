@@ -3,6 +3,11 @@
 POC de uma Api Rest para um Fórum de perguntas e respostas bem simplificado para estudo do padrão arquitetural 'Clean
 Arquitecture' com 'Kotlin' :grin:
 
+#### OBS.:
+
+Foi utilizada uma simplificação do 'Clean Arquitecture' que se considerou mais adequada para implementação de
+microsserviços.
+
 ## Definições do Projeto
 
 ### Convenções e Boas Práticas do Projeto
@@ -15,10 +20,10 @@ Arquitecture' com 'Kotlin' :grin:
 
 ## Tecnologias do Projeto
 
-- [Kotlin](https://kotlinlang.org/)
+- [Kotlin 1.9.0](https://kotlinlang.org/)
 - [JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
-- [Spring Boot 2.7.1](https://spring.io/projects/spring-boot)
-- [MySQL 8](https://www.mysql.com/)
+- [Spring Boot 2.7.13](https://spring.io/projects/spring-boot)
+- [MySQL 8.0.29](https://www.mysql.com/)
 - [Docker](https://www.docker.com/)
 - [Gradle 7.4.1](https://gradle.org/)
 - [Docker Compose 3](https://docs.docker.com/compose/compose-file/compose-file-v3/) (apenas para ambiente local)
@@ -45,6 +50,7 @@ git clone https://github.com/brunoleonardo/poc-clean-architecture-api.git
 
 2) Baixe as dependências do Gradle usando sua IDE (sugerimos a [IntelliJ](https://www.jetbrains.com/pt-br/idea/))
 
+
 3) Acessar a pasta do projeto e subir o container que possui o banco de dados. **Caso já possua outro serviço na porta
    3306 (MySQL), irá ocorrer um erro**:
 
@@ -52,6 +58,10 @@ git clone https://github.com/brunoleonardo/poc-clean-architecture-api.git
 docker-compose up
 ```
 
-4) Usando a IDE, executar a classe principal `applicaton/src/main/kotlin/br/com/blas/forum/Startup.kt`.
+4) Criar o schema `forum` no MySQL.
 
-5) Se tudo der certo, a aplicação irá subir em `localhost:8080`
+
+5) Usando a IDE, executar a classe principal `applicaton/src/main/kotlin/br/com/blas/forum/Startup.kt`.
+
+
+6) Se tudo der certo, a aplicação irá subir em `localhost:8080`
