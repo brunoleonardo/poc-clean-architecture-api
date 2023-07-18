@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController
 class QuestionController(
     private val findQuestionByIdUseCase: FindQuestionByIdUseCase
 ) {
-
     companion object {
         const val URI = "/v1/questions"
     }
@@ -22,5 +21,4 @@ class QuestionController(
     fun getById(@PathVariable id: Int): ResponseEntity<QuestionByIdResponse> {
         return ResponseEntity.ok(QuestionByIdResponse.fromDomain(findQuestionByIdUseCase.execute(id).getOrThrow()))
     }
-
 }

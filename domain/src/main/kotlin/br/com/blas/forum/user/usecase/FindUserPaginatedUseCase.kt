@@ -7,9 +7,7 @@ import javax.inject.Named
 
 @Named
 class FindUserPaginatedUseCase(private val findUserPaginatedGateway: FindUserPaginatedGateway) {
-
     fun execute(pageSize: Int, pageNumber: Int): Page<User> {
         return findUserPaginatedGateway.execute(pageSize, pageNumber)
     }
-
 }

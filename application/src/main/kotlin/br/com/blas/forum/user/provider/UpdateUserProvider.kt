@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class UpdateUserProvider(private val userModelRepository: UserModelRepository) : UpdateUserGateway {
-
     companion object {
         const val USER_WITH_EXISTING_EMAIL = "There is already a user with the given email"
     }
@@ -23,5 +22,4 @@ class UpdateUserProvider(private val userModelRepository: UserModelRepository) :
 
         return Result.success(userModelRepository.save(userModel).toDomain())
     }
-
 }

@@ -14,7 +14,6 @@ data class UserModel(
     val name: String,
     val email: String,
 ) {
-
     fun toDomain() = User(
         id = id,
         name = name,
@@ -28,5 +27,4 @@ data class UserModel(
             email = user.email,
         )
     }
-
 }

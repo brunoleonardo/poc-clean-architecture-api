@@ -6,10 +6,7 @@ import javax.inject.Named
 
 @Named
 class FindUserByIdUseCase(private val findUserByIdGateway: FindUserByIdGateway) {
-
     fun execute(userId: Int): Result<User> {
         return findUserByIdGateway.execute(userId)
     }
-
-
 }

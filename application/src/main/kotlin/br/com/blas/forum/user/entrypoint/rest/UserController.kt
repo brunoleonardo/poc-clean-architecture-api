@@ -12,12 +12,12 @@ import br.com.blas.forum.user.usecase.FindUserByIdUseCase
 import br.com.blas.forum.user.usecase.FindUserPaginatedUseCase
 import br.com.blas.forum.user.usecase.RegisterUserUseCase
 import br.com.blas.forum.user.usecase.UpdateUserUseCase
+import javax.validation.Valid
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.util.UriComponentsBuilder
-import javax.validation.Valid
 
 @RestController
 @RequestMapping(UserController.URI)
@@ -27,7 +27,6 @@ class UserController(
     private val findUserByIdUseCase: FindUserByIdUseCase,
     private val findUserPaginatedUseCase: FindUserPaginatedUseCase,
 ) {
-
     companion object {
         const val URI = "/v1/users"
     }
@@ -67,7 +66,6 @@ class UserController(
 
         return ResponseEntity.ok(UserUpdatedResponse.fromDomain(userUpdated))
     }
-
 }
 
 

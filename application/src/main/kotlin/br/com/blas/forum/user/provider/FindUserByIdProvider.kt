@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class FindUserByIdProvider(private val userModelRepository: UserModelRepository) : FindUserByIdGateway {
-
     companion object {
         const val USER_NOT_FOUND = "User not found"
     }
@@ -18,5 +17,4 @@ class FindUserByIdProvider(private val userModelRepository: UserModelRepository)
 
         return Result.success(user.toDomain())
     }
-
 }

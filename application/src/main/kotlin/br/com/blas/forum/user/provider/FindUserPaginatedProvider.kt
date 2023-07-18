@@ -21,5 +21,4 @@ class FindUserPaginatedProvider(private val userModelRepository: UserModelReposi
             result.isLast,
             result.content.map { it.toDomain() })
     }
-
 }

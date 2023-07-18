@@ -6,9 +6,7 @@ import javax.inject.Named
 
 @Named
 class RegisterUserUseCase(private val registerUserGateway: RegisterUserGateway) {
-
     fun execute(user: User): Result<User> {
         return registerUserGateway.execute(user)
     }
-
 }

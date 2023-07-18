@@ -2,17 +2,16 @@ package br.com.blas.forum.config
 
 import br.com.blas.forum.exception.BusinessException
 import br.com.blas.forum.exception.NotFoundException
+import java.time.LocalDateTime
+import javax.servlet.http.HttpServletRequest
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import java.time.LocalDateTime
-import javax.servlet.http.HttpServletRequest
 
 @RestControllerAdvice
 class GlobalExceptionHandler {
-
     @ExceptionHandler(NotFoundException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     fun handleNotFound(exception: NotFoundException, request: HttpServletRequest): ErrorMessage {
@@ -64,7 +63,6 @@ class GlobalExceptionHandler {
             path = request.servletPath
         )
     }
-
 }
 
 data class ErrorMessage(

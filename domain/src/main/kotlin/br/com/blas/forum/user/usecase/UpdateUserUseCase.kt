@@ -6,9 +6,7 @@ import javax.inject.Named
 
 @Named
 class UpdateUserUseCase(private val updateUserGateway: UpdateUserGateway) {
-
     fun execute(user: User): Result<User> {
         return updateUserGateway.execute(user)
     }
-
 }
