@@ -7,7 +7,6 @@ data class QuestionByIdResponse(
     val title: String,
     val description: String,
     val user: UserResponse,
-    // TODO: ANSWERS
 ) {
     data class UserResponse(
         val id: Int?,

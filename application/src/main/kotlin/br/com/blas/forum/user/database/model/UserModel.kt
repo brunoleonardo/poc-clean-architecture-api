@@ -14,6 +14,8 @@ data class UserModel(
     val name: String,
     val email: String,
 ) {
+    constructor(id: Int?) : this(id, "", "")
+
     fun toDomain() = User(
         id = id,
         name = name,

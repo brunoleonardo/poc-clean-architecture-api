@@ -34,4 +34,15 @@ data class QuestionModel(
             email = user.email
         )
     )
+
+    companion object {
+        fun fromDomain(question: Question) = QuestionModel(
+            id = question.id,
+            title = question.title,
+            description = question.description,
+            user = UserModel(
+                question.user.id,
+            ),
+        )
+    }
 }

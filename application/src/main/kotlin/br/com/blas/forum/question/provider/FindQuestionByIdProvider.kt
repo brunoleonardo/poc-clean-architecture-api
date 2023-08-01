@@ -14,7 +14,7 @@ class FindQuestionByIdProvider(private val questionRepository: QuestionModelRepo
 
     override fun execute(id: Int): Result<Question> {
         val question =
-            questionRepository.findByIdAndFetchUserEagerly(id).orElseThrow { NotFoundException(QUESTION_NOT_FOUND) }
+            questionRepository.findById(id).orElseThrow { NotFoundException(QUESTION_NOT_FOUND) }
 
         return Result.success(question.toDomain())
     }
