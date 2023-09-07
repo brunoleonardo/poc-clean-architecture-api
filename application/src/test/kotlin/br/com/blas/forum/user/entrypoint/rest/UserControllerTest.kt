@@ -29,7 +29,7 @@ internal class UserControllerTest : BaseTest() {
 
     @Test
     @Sql(CLEAR_ALL_TABLES, USERS)
-    fun `Should return a paged list of users`() {
+    fun `should return a paged list of users`() {
         val pageable = PageRequest.of(0, 10)
 
         val mockMvcResponse = mockMvc.perform(
@@ -50,7 +50,7 @@ internal class UserControllerTest : BaseTest() {
 
     @Test
     @Sql(CLEAR_ALL_TABLES, USERS)
-    fun `Should bring existing user by id`() {
+    fun `should bring existing user by id`() {
         val userResponse = UserResponse(1, "Alberto Silva", "beto@gmail.com")
         val expectedResponse = mapper.writeValueAsString(userResponse)
 
@@ -69,7 +69,7 @@ internal class UserControllerTest : BaseTest() {
 
     @Test
     @Sql(CLEAR_ALL_TABLES, USERS)
-    fun `Should receive a user and saved in database with success`() {
+    fun `should receive a user and saved in database with success`() {
         val registerUserRequest = RegisterUserRequest("User 1", "user@gmail.com")
         val registerUserRequestInJson = mapper.writeValueAsString(registerUserRequest)
 
@@ -92,7 +92,7 @@ internal class UserControllerTest : BaseTest() {
 
     @Test
     @Sql(CLEAR_ALL_TABLES, USERS)
-    fun `Should receive a user with an invalid name and not save to the database`() {
+    fun `should receive a user with an invalid name and not save to the database`() {
         val registerUserRequest = RegisterUserRequest("", "user@gmail.com")
         val registerUserRequestInJson = mapper.writeValueAsString(registerUserRequest)
 
@@ -115,7 +115,7 @@ internal class UserControllerTest : BaseTest() {
 
     @Test
     @Sql(CLEAR_ALL_TABLES, USERS)
-    fun `Should receive a user with an invalid email and not save to the database`() {
+    fun `should receive a user with an invalid email and not save to the database`() {
         val registerUserRequest = RegisterUserRequest("User 1", "gmail.com")
         val registerUserRequestInJson = mapper.writeValueAsString(registerUserRequest)
 
