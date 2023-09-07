@@ -1,7 +1,6 @@
 package br.com.blas.forum.question.entrypoint.rest
 
 import br.com.blas.forum.config.BaseTest
-import br.com.blas.forum.helpers.TestsSqlScripts
 import br.com.blas.forum.helpers.TestsSqlScripts.Companion.CLEAR_ALL_TABLES
 import br.com.blas.forum.helpers.TestsSqlScripts.Companion.QUESTIONS
 import br.com.blas.forum.helpers.TestsSqlScripts.Companion.USERS
@@ -26,7 +25,7 @@ internal class QuestionControllerTest : BaseTest() {
 
     @Test
     @Sql(CLEAR_ALL_TABLES, USERS, QUESTIONS)
-    fun `Should bring existing question by id`() {
+    fun `should bring existing question by id`() {
         val user = QuestionByIdResponse.UserResponse(1, "Alberto Silva", "beto@gmail.com")
         val question = QuestionByIdResponse(1, "Question 1", "Description of Question 1", user)
         val expectedResponse = mapper.writeValueAsString(question)
@@ -46,7 +45,7 @@ internal class QuestionControllerTest : BaseTest() {
 
     @Test
     @Sql(CLEAR_ALL_TABLES, USERS, QUESTIONS)
-    fun `Should receive a question and saved in database with success`() {
+    fun `should receive a question and saved in database with success`() {
         val registerQuestionRequest =
             RegisterQuestionRequest("Question XYZ", "Description of Question XYX", 1)
         val registerQuestionRequestInJson = mapper.writeValueAsString(registerQuestionRequest)

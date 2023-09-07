@@ -1,6 +1,7 @@
 # Forum Api
 
-POC de uma Api Rest para um Fórum de perguntas e respostas bem simplificado para estudo do padrão arquitetural 'Clean
+POC de uma Api Rest de um sistema de Fórum de Perguntas e Respostas, com objetivo de estudo do padrão arquitetural '
+Clean
 Arquitecture' com 'Kotlin' :grin:
 
 #### OBS.:
@@ -51,17 +52,21 @@ git clone https://github.com/brunoleonardo/poc-clean-architecture-api.git
 2) Baixe as dependências do Gradle usando sua IDE (sugerimos a [IntelliJ](https://www.jetbrains.com/pt-br/idea/))
 
 
-3) Acessar a pasta do projeto e subir o container que possui o banco de dados. **Caso já possua outro serviço na porta
-   3306 (MySQL), irá ocorrer um erro**:
+3) Crie o schema `forum` no seu banco de dados local.
+
+```shell
+CREATE SCHEMA forum;
+```
+
+4) Acesse a pasta do projeto e rode o comando do docker compose para inicialização dos contêineres utilizados pela
+   aplicação. **Caso existam serviços rodando nas portas 3306 (MySQL), irá ocorrer um erro**:
 
 ```shell
 docker-compose up
 ```
 
-4) Criar o schema `forum` no MySQL.
-
-
 5) Usando a IDE, executar a classe principal `applicaton/src/main/kotlin/br/com/blas/forum/Startup.kt`.
 
 
-6) Se tudo der certo, a aplicação irá subir em `localhost:8080`
+6) Se tudo der certo, a aplicação irá subir em `localhost:8080` e você já será redirecionado para a documentação do
+   Swagger.
