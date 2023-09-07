@@ -36,7 +36,7 @@ abstract class BaseTest {
     }
 
     @AfterEach
-    protected open fun afterEach() {
+    protected fun afterEach() {
         wireMockServer.stop()
     }
 
@@ -50,6 +50,12 @@ abstract class BaseTest {
             registry.add("spring.datasource.url", container::getJdbcUrl)
             registry.add("spring.datasource.password", container::getPassword)
             registry.add("spring.datasource.username", container::getUsername)
+            registry.add("spring.jpa.properties.hibernate.show_sql") {
+                "true"
+            }
+            registry.add("spring.jpa.properties.hibernate.format_sql") {
+                "true"
+            }
         }
     }
 
